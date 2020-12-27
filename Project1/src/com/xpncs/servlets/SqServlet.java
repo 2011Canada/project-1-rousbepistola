@@ -1,4 +1,4 @@
-package com.xpncs;
+package com.xpncs.servlets;
 
 import java.io.IOException;
 

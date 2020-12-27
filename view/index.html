@@ -27,9 +27,8 @@
 
             <div class="row" style="height: 10%; margin-top: 8rem;">
                 <div class="col-12 nav-button-container">
-                     <h1><i class="fas fa-house-user nav-button"></i></h1>
-                     <h6 class="nav-text">Home</h6>
                      
+                     <h4><i class="fas fa-sign-in-alt fa-xs nav-button"><small> LogIn </small></i></h4>
                 </div>
             </div>
 
@@ -37,15 +36,13 @@
 
             <div class="row" style="height: 10%;">
                 <div class="col-12 nav-button-container">
-                     <h1><i class="fas fa-info-circle nav-button"></i></h1>
-                     <h6 class="nav-text">About</h6>
+                     <h4><i class="fas fa-info-circle fa-xs nav-button"><small> About </small></i></h4>
                 </div>
             </div>
 
             <div class="row" style="height: 30%;">
                 <div class="col-12 nav-button-container">
-                     <h1><i class="fas fa-sign-in-alt nav-button"></i></h1>
-                     <h6 class="nav-text">SignIn</h6>
+                     <h4><i class="fas fa-house-user fa-xs nav-button"><small> Home </small></i></h4>
                 </div>
             </div>
 
@@ -58,26 +55,35 @@
 
                         <!------------------------------------ MAIN CONTENT ----------------------------------------->
         <div class="col-9 col-md-10 col-lg-11 body-main">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-header">
-                                Featured
+                    <div class="col-12 col-md-5 col-lg-5 login-form-container">
+                        <form id="login-form" class="p-5">
+                            <div class="col text-center" style="width: 100%;">
+                                <h2 class="badge bg-dark text-light p-3 logo">XPNCS <sup class="pill" style="color: lightcoral;"> pro</sup> Login</h2>
                             </div>
-                            <div class="card-body">
-                                <div class="trialForm">
-                                    <form action="#" method="get" id="thisForm">
-                                        <button class="btn p-3 btn-info" type="submit">GetJSON</button>
-                                        <div id="nameTag"></div>
-                                    </form>
-                                </div>
+                            <div class="mb-3">
+                                <label for="loginUsername" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="loginUsername" required autocomplete="off">
                             </div>
-                        </div>
+
+                            <div class="mb-3">
+                                <label for="loginPass" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="loginPass" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary badge bg-dark text-light p-2" id="loginSubmit">Submit</button>
+
+                        </form>
+
                     </div>
                 </div>
             </div>
         </div>
+
+
+
+
+
     </div>
 </div>
 
@@ -89,38 +95,7 @@
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-<script>
-
-let form = document.getElementById("thisForm");
-let nameTag = document.getElementById("nameTag");
-form.addEventListener('submit', servletAccess)
-
-async function servletAccess(e){
-    e.preventDefault();
-
-    let newData
-
-    console.log("im here")
-	await axios.get('http://localhost:8080/Project1/MyServlet')
-	.then(function (response) {
-	  // handle success
-      
-      let data = response.data
-    //   console.log(data);
-
-    
-    console.log(response)
-    newData = document.createElement("P")
-    newData.innerHTML = response.data[0].name
-    nameTag.appendChild(newData);
-      
-	})
-	.catch(function (error) {
-	  // handle error
-	  console.log(error);
-	})
-}
-</script>
+<script src="./javascript/index.js" async></script>
 
 
 <!-- FONTAWESOME -->
