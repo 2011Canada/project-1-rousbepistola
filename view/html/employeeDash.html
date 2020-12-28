@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XPNCS PRO</title>
-    <link rel="stylesheet" href="./styles/index.css">
+    <title>XPNCS Employee Dashboard</title>
+    <link rel="stylesheet" href="../styles/employeeDash.css">
     <meta name="description" content="A reimbursement webapp for XPNCS employees">
 
     <!--BOOTSTRAP CSS only -->
@@ -12,8 +12,8 @@
 
 </head>
 <body>
-    
 
+    
 <div class="container-fluid">
     <div class="row">
         <div class="col-3 col-md-2 col-lg-1 nav">
@@ -27,7 +27,7 @@
 
             <div class="row" style="height: 10%; margin-top: 8rem;">
                 <div class="col-12 nav-button-container">
-                     <h4><a href="./html/employeeDash.html"><i class="fas fa-house-user fa-xs nav-button"><small> Home </small></i></a></h4>
+                     <h4><i class="fas fa-house-user fa-xs nav-button"><small> Home </small></i></h4>
                      
                 </div>
             </div>
@@ -54,31 +54,7 @@
 
 
                         <!------------------------------------ MAIN CONTENT ----------------------------------------->
-        <div class="col-9 col-md-10 col-lg-11 body-main">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 col-md-5 col-lg-5 login-form-container">
-                        <form id="login-form" class="p-5">
-                            <div class="col text-center" style="width: 100%;">
-                                <h2 class="badge bg-dark text-light p-3 logo">XPNCS <sup class="pill" style="color: lightcoral;"> pro</sup> Login</h2>
-                            </div>
-                            <div class="mb-3">
-                                <label for="loginUsername" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="loginUsername" required autocomplete="off">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="loginPass" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="loginPass" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary badge bg-dark text-light p-2" id="loginSubmit">Submit</button>
-
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-        </div>
+<h1>Employee dashboard</h1>
 
 
 
@@ -95,12 +71,13 @@
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-<script src="./javascript/index.js" async></script>
+<script src="../javascript/employeeDash.js" async></script>
 
 
 <!-- FONTAWESOME -->
 <script src="https://kit.fontawesome.com/3d3ae9b37d.js" crossorigin="anonymous"></script>
 <!-- BOOTSTRAP JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    
 </body>
 </html>

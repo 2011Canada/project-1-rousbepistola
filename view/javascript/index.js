@@ -44,17 +44,22 @@ async function loginAccess(e){
     let loginPass = document.getElementById('loginPass').value
 
     await axios.post('http://localhost:8080/Project1/FrontController', {
+        typeOfRequest: "loginRequest",
         username: loginUsername,
         pass: loginPass
     })
 	.then(function (response) {
 	  // handle success
       
-    let data = response.data
-    
-
-    
+    console.log("you want this",response.data)
+    console.log(response.status)
     console.log(response)
+
+    // if(response.status ==200){
+    //     window.location.href = "/html/employeeDash.html"
+    // } else {
+    //     console.log("Wrong username or password")
+    // }
       
 	})
 	.catch(function (error) {
