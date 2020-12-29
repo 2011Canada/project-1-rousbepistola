@@ -29,6 +29,8 @@
 // 	})
 // }
 
+//                                                                                CREATING SESSION STORAGE
+let storage = window.sessionStorage;
 
 
 
@@ -50,21 +52,28 @@ async function loginAccess(e){
     })
 	.then(function (response) {
 	  // handle success
-      
-    console.log("you want this",response.data)
     console.log(response.status)
-    console.log(response)
 
-    // if(response.status ==200){
-    //     window.location.href = "/html/employeeDash.html"
-    // } else {
-    //     console.log("Wrong username or password")
-    // }
+    if(response.status == 200 && response.data.userRole == "employee"){
+      console.log(response.data)
+      let {fname, lname, username, pass, email, user_id} = response.data;
+      console.log("WELCOME! ",fname, lname)
+      
+      // setting sessionStorage
+      storage.setItem("fname", fname)
+      storage.setItem("lname", lname)
+      storage.setItem("username", username)
+      storage.setItem("email", email)
+      storage.setItem("user_id", user_id)
+      
+      window.location.href = "./html/employeeDash.html";
+    } 
       
 	})
 	.catch(function (error) {
 	  // handle error
-	  console.log(error);
+    console.log(error, "Unauthorized access");
+    document.getElementById("loginError").innerHTML = "Invalid credentials or account may not exist"
 	})
 
 }

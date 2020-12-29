@@ -1,13 +1,11 @@
 package com.xpncs.models;
 
 public class Reimbursement {
-	
+	int id;
 	Double amount;
 	String timeSubmitted;
-	String timeResolved;
 	String description;
 	int author;
-	int resolver;
 	boolean status;
 	String type;
 	public Reimbursement() {
@@ -21,9 +19,8 @@ public class Reimbursement {
 		result = prime * result + ((amount == null) ? 0 : amount.hashCode());
 		result = prime * result + author;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + resolver;
+		result = prime * result + id;
 		result = prime * result + (status ? 1231 : 1237);
-		result = prime * result + ((timeResolved == null) ? 0 : timeResolved.hashCode());
 		result = prime * result + ((timeSubmitted == null) ? 0 : timeSubmitted.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
@@ -49,14 +46,9 @@ public class Reimbursement {
 				return false;
 		} else if (!description.equals(other.description))
 			return false;
-		if (resolver != other.resolver)
+		if (id != other.id)
 			return false;
 		if (status != other.status)
-			return false;
-		if (timeResolved == null) {
-			if (other.timeResolved != null)
-				return false;
-		} else if (!timeResolved.equals(other.timeResolved))
 			return false;
 		if (timeSubmitted == null) {
 			if (other.timeSubmitted != null)
@@ -70,17 +62,21 @@ public class Reimbursement {
 			return false;
 		return true;
 	}
-	public Reimbursement(Double amount, String timeSubmitted, String timeResolved, String description, int author,
-			int resolver, boolean status, String type) {
+	public Reimbursement(Double amount, String timeSubmitted, String description, int author, boolean status,
+			String type) {
 		super();
 		this.amount = amount;
 		this.timeSubmitted = timeSubmitted;
-		this.timeResolved = timeResolved;
 		this.description = description;
 		this.author = author;
-		this.resolver = resolver;
 		this.status = status;
 		this.type = type;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	public Double getAmount() {
 		return amount;
@@ -94,12 +90,6 @@ public class Reimbursement {
 	public void setTimeSubmitted(String timeSubmitted) {
 		this.timeSubmitted = timeSubmitted;
 	}
-	public String getTimeResolved() {
-		return timeResolved;
-	}
-	public void setTimeResolved(String timeResolved) {
-		this.timeResolved = timeResolved;
-	}
 	public String getDescription() {
 		return description;
 	}
@@ -111,12 +101,6 @@ public class Reimbursement {
 	}
 	public void setAuthor(int author) {
 		this.author = author;
-	}
-	public int getResolver() {
-		return resolver;
-	}
-	public void setResolver(int resolver) {
-		this.resolver = resolver;
 	}
 	public boolean isStatus() {
 		return status;
@@ -132,11 +116,12 @@ public class Reimbursement {
 	}
 	@Override
 	public String toString() {
-		return "Reimbursement [amount=" + amount + ", timeSubmitted=" + timeSubmitted + ", timeResolved=" + timeResolved
-				+ ", description=" + description + ", author=" + author + ", resolver=" + resolver + ", status="
-				+ status + ", type=" + type + "]";
+		return "Reimbursement [id=" + id + ", amount=" + amount + ", timeSubmitted=" + timeSubmitted + ", description="
+				+ description + ", author=" + author + ", status=" + status + ", type=" + type + "]";
 	}
 	
 	
-
+	
+	
+	
 }

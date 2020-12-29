@@ -21,11 +21,11 @@ public class AuthController {
 	public User userLogin(String username, String pass) throws IOException {
 		
 		
-		ED.login(username, pass);
+		User loggedInUser = ED.login(username, pass);
 		
 		
 		
-		return null;
+		return loggedInUser;
 	}
 	
 	

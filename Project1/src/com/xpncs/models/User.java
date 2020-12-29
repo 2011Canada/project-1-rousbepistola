@@ -7,6 +7,7 @@ public class User {
 	String username;
 	String pass;
 	String email;
+	String userRole;
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -19,6 +20,7 @@ public class User {
 		result = prime * result + ((fname == null) ? 0 : fname.hashCode());
 		result = prime * result + ((lname == null) ? 0 : lname.hashCode());
 		result = prime * result + ((pass == null) ? 0 : pass.hashCode());
+		result = prime * result + ((userRole == null) ? 0 : userRole.hashCode());
 		result = prime * result + user_id;
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
@@ -52,6 +54,11 @@ public class User {
 				return false;
 		} else if (!pass.equals(other.pass))
 			return false;
+		if (userRole == null) {
+			if (other.userRole != null)
+				return false;
+		} else if (!userRole.equals(other.userRole))
+			return false;
 		if (user_id != other.user_id)
 			return false;
 		if (username == null) {
@@ -61,7 +68,7 @@ public class User {
 			return false;
 		return true;
 	}
-	public User(int user_id, String fname, String lname, String username, String pass, String email) {
+	public User(int user_id, String fname, String lname, String username, String pass, String email, String userRole) {
 		super();
 		this.user_id = user_id;
 		this.fname = fname;
@@ -69,6 +76,7 @@ public class User {
 		this.username = username;
 		this.pass = pass;
 		this.email = email;
+		this.userRole = userRole;
 	}
 	public int getUser_id() {
 		return user_id;
@@ -106,13 +114,18 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public String getUserRole() {
+		return userRole;
+	}
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
+	}
 	@Override
 	public String toString() {
 		return "User [user_id=" + user_id + ", fname=" + fname + ", lname=" + lname + ", username=" + username
-				+ ", pass=" + pass + ", email=" + email + "]";
+				+ ", pass=" + pass + ", email=" + email + ", userRole=" + userRole + "]";
 	}
 	
 	
 	
-
 }

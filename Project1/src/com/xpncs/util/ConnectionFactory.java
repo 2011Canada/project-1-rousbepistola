@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConnectionFactory {
 	//we should turn our factory into singleton
 	//make a private static reference to yourself - one and only copy
-	private static ConnectionFactory cf = new ConnectionFactory(10);
+	private static ConnectionFactory cf = new ConnectionFactory(1);
 	
 	//provide a single point of access to the connection factory
 	public static ConnectionFactory getConnectionFactory() {
@@ -23,11 +23,12 @@ public class ConnectionFactory {
 	private ConnectionFactory(int numberOfConnections) {
 		
 		try {
-			Class.forName("org.postgresql.Driver");
-		} catch (ClassNotFoundException e1) {
+			DriverManager.registerDriver(new org.postgresql.Driver());
+		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
 		
 		String url = System.getenv("DB_URL");
 		
