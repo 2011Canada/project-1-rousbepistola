@@ -8,7 +8,7 @@ document.getElementById("dashUserId").innerHTML = `<strong>USER ID:</strong> ${s
 
 
 
-//                                                        HANDLING REIMBURSEMENT SUBMIT
+//-------------------------------------------------HANDLING REIMBURSEMENT SUBMIT-------------------------------------------------------------------
 let reimbursementForm = document.getElementById("reimbursementForm");
 reimbursementForm.addEventListener('submit', reimbursementRequest)
 
@@ -46,22 +46,8 @@ async function reimbursementRequest(e){
     </div>`
 
 
-    console.log(response, response.status, "you got it!")
+    console.log(response, response.status, "succesfully submitted reimbursement!")
 
-    // if(response.status == 200 && response.data.userRole == "employee"){
-    //   console.log(response.data)
-    //   let {fname, lname, username, pass, email, user_id} = response.data;
-    //   console.log("WELCOME! ",fname, lname)
-      
-    //   // setting sessionStorage
-    //   storage.setItem("fname", fname)
-    //   storage.setItem("lname", lname)
-    //   storage.setItem("username", username)
-    //   storage.setItem("email", email)
-    //   storage.setItem("user_id", user_id)
-      
-    //   window.location.href = "./html/employeeDash.html";
-    // } 
       
 	})
 	.catch(function (error) {
@@ -70,6 +56,100 @@ async function reimbursementRequest(e){
 	})
 
 }
+
+
+
+//-------------------------------------------------HANDLING TICKET CHECKING-------------------------------------------------------------------
+
+let showTicketButton = document.getElementById("showTicketButton");
+showTicketButton.addEventListener('click', showTickets)
+let ticketSection = document.getElementById("ticketSection")
+
+async function showTickets(e){
+    e.preventDefault();
+    document.getElementById("spinner").style.display = "flex"
+ 
+    
+
+    let author = storage.getItem("user_id")
+
+    await axios.post('http://localhost:8080/Project1/FrontController', {
+        typeOfRequest: "showTickets",
+        author,
+
+    })
+	.then(function (response) {
+    
+
+        setTimeout(()=>{
+            document.getElementById("spinner").style.display = "none"
+            document.getElementById("ticketSection").style.display = "flex"
+            
+        }, 1000)
+        ticketSection.innerHTML = ""
+        ticketSection.innerHTML += `<li style="border: 1px solid seagreen; padding: .5rem;" class="list-group-item list-group-item-primary text-left bg-dark text-light">Tickets <button style="position:absolute; right: 3%; border-radius:8%;" id="closeTicket" class="btn btn-light btn-sm px-1 py-0" onclick="closeTicketNow()"> close </button></li>`
+        // generating child nodes
+        for(let i = 0; i < response.data.length; i++){
+            console.log(response.data[i])
+            
+
+            if(response.data[i].status == true){
+                ticketSection.innerHTML += `
+                <li style="border-bottom: 3px solid seagreen; padding: 0.5rem; display:initial;" class="list-group-item list-group-item-success approved-tickets">
+                    <i class="far fa-thumbs-up fa-lg text-success py-2" style="position:absolute; right:3%;"></i> <span class="badge  text-secondary p-1">Ticket Number: ${response.data[i].id}</span> ••• <strong>DATE SUBMITTED:</strong> ${response.data[i].time_submitted}<hr>
+                    <p><strong class="badge bg-success text-light">APPROVED</strong> - Amount: ${response.data[i].amount} (<small>Expense Description: ${response.data[i].description}</small>)</p>
+                    <p>Approved on: ${response.data[i].time_resolved} by employee ID : ${response.data[i].resolver}</p>
+                </li>`
+
+            } else if(response.data[i].status == false && response.data[i].time_resolved == null){
+                ticketSection.innerHTML += `
+                <li style="border-bottom: 3px solid seagreen; padding: 0.5rem; display:initial;" class="list-group-item list-group-item-dark pending-tickets bg-light">
+                    <i class="fas fa-hourglass-start fa-lg py-2" style="position:absolute; right:3%;"></i> <span class="badge  text-secondary p-1">Ticket Number: ${response.data[i].id}</span> ••• <strong>DATE SUBMITTED:</strong> ${response.data[i].time_submitted}<hr>
+                    <p><strong class="badge bg-info text-text-light"> PENDING </strong> - Amount: ${response.data[i].amount} (<small>Expense Description: ${response.data[i].description}</small>)</p>
+                </li>
+                `
+
+            } else if(response.data[i].status == false && response.data[i].time_resolved != null){
+                ticketSection.innerHTML += `
+                <li style="border-bottom: 3px solid seagreen; padding: 0.5rem; display:initial;" class="list-group-item list-group-item-danger rejected-tickets">
+                    <i class="fas fa-times fa-lg text-danger py-2" style="position:absolute; right:3%;"></i> <span class="badge  text-secondary p-1">Ticket Number: ${response.data[i].id}</span> ••• <strong>DATE SUBMITTED:</strong> ${response.data[i].time_submitted}<hr>
+                    <p><strong class="badge bg-danger text-light">REJECTED</strong> - Amount: ${response.data[i].amount} (<small>Expense Description: ${response.data[i].description}</small>)</p>
+                    <p>Rejected on: ${response.data[i].time_resolved} by employee ID : ${response.data[i].resolver}</p>
+                    <button class="btn btn-sm btn-dark btn-outline-red text-light" > Contest Rejection </button>
+                </li>
+                `
+                
+            }
+
+
+
+
+    }
+
+
+
+    console.log(response, response.status, "SUCCESSFULLY RETRIEVED TICKETS!")
+
+      
+	})
+	.catch(function (error) {
+	  // handle error
+    console.log(error, "Invalid Request");
+	})
+
+}
+
+//-------------------------------------------------CLOSING TICKET TAB-------------------------------------------------------------------
+
+
+// let closeTicketTab = document.getElementById("closeTicket");
+// closeTicketTab.addEventListener("click", closeTicketNow)
+
+function closeTicketNow(){
+    document.getElementById("ticketSection").style.display = "none"
+}
+
+
 
 
 

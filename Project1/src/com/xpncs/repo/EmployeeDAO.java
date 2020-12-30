@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.xpncs.models.Reimbursement;
+import com.xpncs.models.Tickets;
 import com.xpncs.models.User;
 import com.xpncs.util.ConnectionFactory;
 
@@ -79,11 +80,50 @@ public class EmployeeDAO {
 		
 		return isPosted;
 	}
+
+
+	
+	
+//	---------------------------------------------------------------SHOW TICKET REQUEST----------------------------------------------------------------------------
+	public ArrayList<Tickets> showTickets(int author) {
+		
+		Connection conn = this.cf.getConnection();
+		int Author = author;
+		ArrayList<Tickets> tickets = new ArrayList<>();
+		Tickets ticket;
+		
+		
+			try {
+				String sql = "select * from reimbursement r \r\n"
+						+ "where author = "+Author+"";
+				
+				Statement s = conn.createStatement();
+				ResultSet res = s.executeQuery(sql);
+				
+				while(res.next()) {
+					tickets.add(ticket = new Tickets(res.getInt("id"),res.getDouble("amount"), res.getString("time_submitted"), res.getString("time_resolved"), res.getString("description"), res.getInt("author"), res.getInt("resolver"), res.getBoolean("status"), res.getString("type")));
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+	
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		return tickets;
+	}
 	
 	
 //	-------------------------------------------------------------------------------------------------------------------------------------------
-	
-	
 	
 	
 }

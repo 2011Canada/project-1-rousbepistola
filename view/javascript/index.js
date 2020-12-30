@@ -67,7 +67,10 @@ async function loginAccess(e){
       storage.setItem("user_id", user_id)
       
       window.location.href = "./html/employeeDash.html";
-    } 
+    } else {
+       console.log("Something went wrong with your account login");
+      document.getElementById("loginError").innerHTML = "Something went wrong with your account, please report the issue to our team"
+    }
       
 	})
 	.catch(function (error) {

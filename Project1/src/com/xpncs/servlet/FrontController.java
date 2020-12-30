@@ -20,9 +20,11 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xpncs.controllers.AuthController;
 import com.xpncs.controllers.ReimbursementRequestController;
+import com.xpncs.controllers.ShowTicketController;
 import com.xpncs.models.Credentials;
 import com.xpncs.models.Reimbursement;
 import com.xpncs.models.RequestTypeGetter;
+import com.xpncs.models.Tickets;
 import com.xpncs.models.User;
 
 
@@ -43,6 +45,7 @@ public class FrontController extends HttpServlet {
 		//TYPE OF REQUEST FOR PROPER HANDLING
 		String login = "loginRequest";
 		String reimbursementRequest = "reimbursementRequest";
+		String showTickets = "showTickets";
 		
 		
 
@@ -94,6 +97,26 @@ public class FrontController extends HttpServlet {
 			
 			
 		}
+		
+		
+		//-------------------------------------------------HANDLING  REQUEST FOR SHOWING TICKETS-------------------------------------------------
+		if(handleRequest.equals(showTickets)) {
+			System.out.println("SHOWTICKET REQUEST HANDLER");
+			int author = typeOfRequest.getAuthor();
+			ShowTicketController stc = new ShowTicketController();
+			
+			
+			ArrayList<Tickets> tickets = stc.showTickets(author);
+			res.getWriter().write(om.writeValueAsString(tickets));
+			
+
+
+		}
+		
+		
+		
+		
+		
 	}
        
 

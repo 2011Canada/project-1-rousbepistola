@@ -35,6 +35,11 @@
 }
 
 #mainDash{
-    background-color: #feca2e46;
+    background-color: #17515f;
+    /* background-image: url("https://images.pexels.com/photos/1939485/pexels-photo-1939485.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"); */
+    /* background-size: cover; */
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
