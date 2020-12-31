@@ -1,5 +1,14 @@
 //                                                                                CREATING SESSION STORAGE
 let storage = window.sessionStorage;
+
+// if(storage.length > 0){
+//     console.log(storage)
+//     window.location.href = "../index.html";
+// };
+
+
+
+
 //                                                          LOAD DASH DATA
 document.getElementById("dashData").innerHTML = `<strong>NAME:</strong> ${storage.getItem("fname")} ${storage.getItem("lname")}`
 document.getElementById("dashUsername").innerHTML = `<strong>USERNAME:</strong>  ${storage.getItem("username")}`
@@ -147,6 +156,21 @@ async function showTickets(e){
 
 function closeTicketNow(){
     document.getElementById("ticketSection").style.display = "none"
+}
+
+
+//-------------------------------------------------LOG OUT-------------------------------------------------------------------
+
+
+let logout = document.getElementById("logout")
+logout.addEventListener("click", logoutNow)
+
+function logoutNow(e){
+    e.preventDefault();
+    storage.clear();
+    window.location.replace("../index.html");
+
+
 }
 
 

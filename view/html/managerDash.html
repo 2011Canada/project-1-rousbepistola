@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XPNCS Employee Dashboard</title>
-    <link rel="stylesheet" href="../styles/employeeDash.css">
+    <title>XPNCS Manager Dashboard</title>
+    <link rel="stylesheet" href="../styles/managerDash.css">
     <meta name="description" content="A reimbursement webapp for XPNCS employees">
 
     <!--BOOTSTRAP CSS only -->
     <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
+
+
+            
 </head>
 <body>
 
@@ -33,7 +36,7 @@
                     <h2 class="col text-center" style="font-size: 2vw;">DASHBOARD</h2>
                 </div>
                 <div class="row mt-3" style="font-size:0.8rem; overflow-wrap: break-word; color: #073468;">
-                    <h6>PROFILE : EMPLOYEE</h6>
+                    <h6 class="text-success"><strong>PROFILE : MANAGER</strong></h6>
                     <hr>
                      <p><span id="dashData"></span></p>
                      <p><span id="dashUsername"></span></p>
@@ -53,23 +56,45 @@
             <div class="container-fluid">
                 <div class="row">
 
-                    <div class="col-12 col-md-4 my-5">
-                        
-
-                        <div class="card">
-                            <div class="card-header text-light text-center bg-dark">
-                                QUICK REIMBURSEMENT REQUEST
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">Request for a reimbursement on recent expense under company business</p>
-                                <a href="#" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#reimbursementModal">Fill Out Information</a>
-                            </div>
-                            
-                        </div>
+                    <div class="col-12 col-md-12 my-5">
+                                <div class="row mt-60">
+                                    <div class="col-md-4 col-sm-12 col-12 my-1">
+                                        <div class="serv-section-2">
+                                            <div class="serv-section-2-icon"> <i class="fas fa-gem"></i> </div>
+                                            <div class="serv-section-desc">
+                                                <h5>542</h5>
+                                                <h5>Approved Tickets</h5>
+                                                <h5>placeholder snippets</h5> </div>
+                                            <div class="section-heading-line-left"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12 col-12 my-1">
+                                        <div class="serv-section-2 serv-section-2-act">
+                                            <div class="serv-section-2-icon serv-section-2-icon-act"> <i class="fas fa-cogs"></i> </div>
+                                            <div class="serv-section-desc">
+                                                <h5>17</h5>
+                                                <h5>Pending Tickets</h5>
+                                                <h5>placeholder snippets</h5> </div>
+                                            <div class="section-heading-line-left"></div>
+                                        
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12 col-12 my-1">
+                                        <div class="serv-section-2">
+                                            <div class="serv-section-2-icon"> <i class="fas fa-signature"></i> </div>
+                                            <div class="serv-section-desc">
+                                                <h5>61</h5>
+                                                <h5>Rejected Tickets</h5>
+                                                <h5>placeholder snippets</h5> </div>
+                                            <div class="section-heading-line-left"></div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>   
                     </div>
 
 
-                    <div class="col-12 col-md-4 my-5">
+                    <div class="col-12 col-md-6 my-5">
                         <div class="card">
                             <div class="card-header text-light text-center bg-dark">
                                 VIEW TICKETS SUBMITTED
@@ -82,7 +107,7 @@
                     </div>
 
 
-                    <div class="col-12 col-md-4 my-5">
+                    <div class="col-12 col-md-6 my-5">
                         <div class="card">
                             <div class="card-header text-light text-center bg-dark">
                                 VIEW RULES FOR REIMBURSEMENT
@@ -90,6 +115,7 @@
                             <div class="card-body">
                                 <p class="card-text">View company rules for approving or rejecting reimbursements</p>
                                 <a href="../res/rules.txt" target="blank" download="rules.txt" class="btn btn-outline-info text-dark">View Rules</a>
+
                             </div>
                         </div>
                     </div>
@@ -100,7 +126,9 @@
                 <div class="row">
                     <div class="col-12">
                         <ul class="list-group" id="ticketSection" style="display:none;">
+                            <div>
 
+                            </div>
                             
                         </ul>
                     </div>
@@ -205,10 +233,11 @@
 </div>
 
 
+
 <!-- SCRIPT -->
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-<script src="../javascript/employeeDash.js" async></script>
+<script src="../javascript/managerDash.js" async></script>
 
 
 <!-- FONTAWESOME -->

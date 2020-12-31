@@ -110,20 +110,105 @@ public class EmployeeDAO {
 			} 
 	
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		return tickets;
 	}
+
+
+	
+//	-----------------------------------------------------------SHOW ALL TICKETS-------------------------------------------------------------------------------
+	
+	public ArrayList<Tickets> showAllTickets(int resolver) {
+		// TODO Auto-generated method stub
+		
+		Connection conn = this.cf.getConnection();
+		int Resolver = resolver;
+		ArrayList<Tickets> tickets = new ArrayList<>();
+		Tickets ticket;
+		
+		
+			try {
+				String sql = "select * from reimbursement r \r\n"
+						+ "inner join \"user\" u ON r.author = u.user_id ";
+				
+				Statement s = conn.createStatement();
+				ResultSet res = s.executeQuery(sql);
+				
+				while(res.next()) {
+					tickets.add(ticket = new Tickets(res.getInt("id"),res.getDouble("amount"), res.getString("time_submitted"), res.getString("time_resolved"), res.getString("description"), 
+													res.getInt("author"), res.getInt("resolver"), res.getBoolean("status"), res.getString("type"), res.getString("fname"), res.getString("lname") ));
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+	
+
+		return tickets;
+	}
+
+
 	
 	
-//	-------------------------------------------------------------------------------------------------------------------------------------------
 	
+
+//	------------------------------------------------------TICKET APPROVAL-------------------------------------------------------------------------------------
+	
+	public boolean approvalOfTicket(int resolver, String time_resolved, int id) {
+		boolean isApproved = false;
+		Connection conn = this.cf.getConnection();
+		
+		
+			try {
+				String sql = "UPDATE xpncs.reimbursement\r\n"
+						+ "	SET resolver="+resolver+",status=true,time_resolved='"+time_resolved+"'\r\n"
+						+ "	WHERE id="+id+";\r\n"
+						+ "";
+				
+				Statement s = conn.createStatement();
+				ResultSet res = s.executeQuery(sql);
+				
+				isApproved = true;
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+//				e.printStackTrace();
+				System.out.println("check db if updated");
+				isApproved = true;
+			} 
+		
+		return isApproved;
+		
+	}
+
+
+	
+//	------------------------------------------------------TICKET REJECTION-------------------------------------------------------------------------------------
+	
+	public boolean rejectionOfTicket(int resolver, String time_resolved, int id) {
+		boolean isApproved = false;
+		Connection conn = this.cf.getConnection();
+		
+		
+			try {
+				String sql = "UPDATE xpncs.reimbursement\r\n"
+						+ "	SET resolver="+resolver+",time_resolved='"+time_resolved+"'\r\n"
+						+ "	WHERE id="+id+";\r\n"
+						+ "";
+				
+				Statement s = conn.createStatement();
+				ResultSet res = s.executeQuery(sql);
+				
+				isApproved = true;
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+//				e.printStackTrace();
+				System.out.println("check db if updated");
+				isApproved = true;
+			} 
+		
+		return isApproved;
+	}
 	
 }

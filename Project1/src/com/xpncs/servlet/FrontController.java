@@ -18,8 +18,10 @@ import org.json.JSONObject;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.xpncs.controllers.ApproveTicket;
 import com.xpncs.controllers.AuthController;
 import com.xpncs.controllers.ReimbursementRequestController;
+import com.xpncs.controllers.ShowEveryTicket;
 import com.xpncs.controllers.ShowTicketController;
 import com.xpncs.models.Credentials;
 import com.xpncs.models.Reimbursement;
@@ -46,6 +48,9 @@ public class FrontController extends HttpServlet {
 		String login = "loginRequest";
 		String reimbursementRequest = "reimbursementRequest";
 		String showTickets = "showTickets";
+		String showEveryTicket = "showEveryTicket";
+		String approveTicket = "approveTicket";
+		String rejectTicket = "rejectTicket";
 		
 		
 
@@ -110,6 +115,46 @@ public class FrontController extends HttpServlet {
 			res.getWriter().write(om.writeValueAsString(tickets));
 			
 
+
+		}
+		
+		//-------------------------------------------------HANDLING  REQUEST FOR SHOWING ALL TICKETS-------------------------------------------------
+		if(handleRequest.equals(showEveryTicket)) {
+			System.out.println("SHOWEVERYTICKET REQUEST HANDLER");
+			int resolver = typeOfRequest.getResolver();
+			ShowEveryTicket set = new ShowEveryTicket();
+			
+			
+			ArrayList<Tickets> tickets = set.showEveryTicket(resolver);
+			res.getWriter().write(om.writeValueAsString(tickets));
+
+		}
+		
+		//-------------------------------------------------HANDLING  REQUEST FOR APPROVAL OF A TICKET-------------------------------------------------
+		if(handleRequest.equals(approveTicket)) {
+			System.out.println("APPROVETICKET REQUEST HANDLER");
+			int resolver = typeOfRequest.getResolver();
+			String time_resolved = typeOfRequest.getTimeResolved();
+			int id = typeOfRequest.getId();
+			
+			
+			ApproveTicket at = new ApproveTicket();
+			at.ApproveTicket(resolver, time_resolved, id);
+			res.getWriter().write(om.writeValueAsString("A TICKET HAS BEEN APPROVED"));
+
+		}
+		
+		//-------------------------------------------------HANDLING  REQUEST FOR REJECTION OF A TICKET-------------------------------------------------
+		if(handleRequest.equals(rejectTicket)) {
+			System.out.println("REJECTTICKET REQUEST HANDLER");
+			int resolver = typeOfRequest.getResolver();
+			String time_resolved = typeOfRequest.getTimeResolved();
+			int id = typeOfRequest.getId();
+			
+			
+			ApproveTicket at = new ApproveTicket();
+			at.RejectTicket(resolver, time_resolved, id);
+			res.getWriter().write(om.writeValueAsString("A TICKET HAS BEEN REJECTED SUCCESFULLY"));
 
 		}
 		

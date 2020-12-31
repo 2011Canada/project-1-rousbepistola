@@ -1,5 +1,8 @@
 package com.xpncs.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Tickets {
 	
 	int id;
@@ -11,6 +14,8 @@ public class Tickets {
 	int resolver;
 	boolean status;
 	String type;
+	String fname;
+	String lname;
 	public Tickets() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -22,7 +27,9 @@ public class Tickets {
 		result = prime * result + ((amount == null) ? 0 : amount.hashCode());
 		result = prime * result + author;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((fname == null) ? 0 : fname.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((lname == null) ? 0 : lname.hashCode());
 		result = prime * result + resolver;
 		result = prime * result + (status ? 1231 : 1237);
 		result = prime * result + ((time_resolved == null) ? 0 : time_resolved.hashCode());
@@ -51,7 +58,17 @@ public class Tickets {
 				return false;
 		} else if (!description.equals(other.description))
 			return false;
+		if (fname == null) {
+			if (other.fname != null)
+				return false;
+		} else if (!fname.equals(other.fname))
+			return false;
 		if (id != other.id)
+			return false;
+		if (lname == null) {
+			if (other.lname != null)
+				return false;
+		} else if (!lname.equals(other.lname))
 			return false;
 		if (resolver != other.resolver)
 			return false;
@@ -75,7 +92,7 @@ public class Tickets {
 		return true;
 	}
 	public Tickets(int id, Double amount, String time_submitted, String time_resolved, String description, int author,
-			int resolver, boolean status, String type) {
+			int resolver, boolean status, String type, String fname, String lname) {
 		super();
 		this.id = id;
 		this.amount = amount;
@@ -86,6 +103,8 @@ public class Tickets {
 		this.resolver = resolver;
 		this.status = status;
 		this.type = type;
+		this.fname = fname;
+		this.lname = lname;
 	}
 	public int getId() {
 		return id;
@@ -141,15 +160,40 @@ public class Tickets {
 	public void setType(String type) {
 		this.type = type;
 	}
+	public String getFname() {
+		return fname;
+	}
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+	public String getLname() {
+		return lname;
+	}
+	public void setLname(String lname) {
+		this.lname = lname;
+	}
 	@Override
 	public String toString() {
 		return "Tickets [id=" + id + ", amount=" + amount + ", time_submitted=" + time_submitted + ", time_resolved="
 				+ time_resolved + ", description=" + description + ", author=" + author + ", resolver=" + resolver
-				+ ", status=" + status + ", type=" + type + "]";
+				+ ", status=" + status + ", type=" + type + ", fname=" + fname + ", lname=" + lname + "]";
+	}
+	public Tickets(int id, Double amount, String time_submitted, String time_resolved, String description, int author,
+			int resolver, boolean status, String type) {
+		super();
+		this.id = id;
+		this.amount = amount;
+		this.time_submitted = time_submitted;
+		this.time_resolved = time_resolved;
+		this.description = description;
+		this.author = author;
+		this.resolver = resolver;
+		this.status = status;
+		this.type = type;
 	}
 	
 	
-
+	
 	
 	
 }

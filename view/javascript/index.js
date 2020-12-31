@@ -30,7 +30,12 @@
 // }
 
 //                                                                                CREATING SESSION STORAGE
+
 let storage = window.sessionStorage;
+
+
+
+
 
 
 
@@ -67,9 +72,30 @@ async function loginAccess(e){
       storage.setItem("user_id", user_id)
       
       window.location.href = "./html/employeeDash.html";
+    } else if(response.status == 200 && response.data.userRole == "manager"){
+        console.log("welcome manager");
+      let {fname, lname, username, pass, email, user_id} = response.data;
+      console.log("WELCOME! ",fname, lname)
+      
+      // setting sessionStorage
+      storage.setItem("fname", fname)
+      storage.setItem("lname", lname)
+      storage.setItem("username", username)
+      storage.setItem("email", email)
+      storage.setItem("user_id", user_id)
+
+        window.location.href = "./html/managerDash.html";
+
+
+
     } else {
        console.log("Something went wrong with your account login");
       document.getElementById("loginError").innerHTML = "Something went wrong with your account, please report the issue to our team"
+
+
+
+
+      
     }
       
 	})
