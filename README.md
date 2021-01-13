@@ -41,5 +41,5 @@ The Expense Reimbursement System (ERS) will manage the process of reimbursing em
 
 ## ERD
 ![Alt][1]
-[1]: /erd.png "ERD"
+[1]: ./erd.png "ERD"
 
