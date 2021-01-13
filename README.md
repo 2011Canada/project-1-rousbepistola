@@ -40,3 +40,6 @@ The Expense Reimbursement System (ERS) will manage the process of reimbursing em
 - DBeaver
 
 ## ERD
+![Alt][1]
+[1]: /erd.png "ERD"
+
