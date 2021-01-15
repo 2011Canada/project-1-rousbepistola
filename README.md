@@ -51,12 +51,12 @@ The Expense Reimbursement System (ERS) will manage the process of reimbursing em
 - Requires RDS on AWS
 > https://aws.amazon.com/
 
-###STEPS
-> Start Java server
-> Connect to database using DBeaver
-> Run the included ERSScript on your database
-> Go to http://localhost:8080/index.html in a Chrome incognito tab
-> Login Using one of username and password provided in the script
+### STEPS
+- Start Java server
+- Connect to database using DBeaver
+- Run the included ERSScript on your database
+- Go to http://localhost:8080/index.html in a Chrome incognito tab
+- Login Using one of username and password provided in the script
 
 
 ## Usage
