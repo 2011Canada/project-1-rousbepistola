@@ -80,5 +80,5 @@ The Expense Reimbursement System (ERS) will manage the process of reimbursing em
 ![Alt](/erd.png "ERD")
 
 ## License
-- This project uses the following license: [![License](/LICENSE)
+- This project uses the following license: [GNU LICENSE](/LICENSE)
 
